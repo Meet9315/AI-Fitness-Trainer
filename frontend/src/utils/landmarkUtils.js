@@ -43,7 +43,22 @@ export function hasMinimumVisibility(landmarks, exercise) {
   }
 
   // Require at least 70% of required landmarks to be visible
-  return visibleCount / requiredLandmarks.length >= 0.7;
+  const hasVisibleJoints = visibleCount / requiredLandmarks.length >= 0.7;
+
+  // Calculate bounding box size to prevent micro-hallucinations (like hands being mistaken for full bodies)
+  let minX = 1, maxX = 0, minY = 1, maxY = 0;
+  for (const lm of landmarks) {
+    if (lm.x < minX) minX = lm.x;
+    if (lm.x > maxX) maxX = lm.x;
+    if (lm.y < minY) minY = lm.y;
+    if (lm.y > maxY) maxY = lm.y;
+  }
+  
+  const boundingBoxArea = (maxX - minX) * (maxY - minY);
+  // Human should take up at least a reasonable portion of the screen (e.g. > 5% of the frame)
+  const isLargeEnough = boundingBoxArea > 0.05;
+
+  return hasVisibleJoints && isLargeEnough;
 }
 
 /**

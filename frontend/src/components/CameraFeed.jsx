@@ -8,7 +8,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
 import { drawPoseSkeleton, drawAngles } from '../utils/drawingUtils';
-import { formatLandmarksForBackend } from '../utils/landmarkUtils';
+import { formatLandmarksForBackend, hasMinimumVisibility } from '../utils/landmarkUtils';
 
 const VIDEO_CONSTRAINTS = {
   width: { ideal: 1280 },
@@ -71,7 +71,10 @@ export default function CameraFeed({
         // Run pose detection
         const result = detectPose(video);
 
-        if (result && result.landmarks) {
+        // Verify it's actually a human by checking visibility confidence
+        const isHumanDetected = result && result.landmarks && hasMinimumVisibility(result.landmarks, exercise);
+
+        if (isHumanDetected) {
           // Draw skeleton overlay
           drawPoseSkeleton(ctx, result.landmarks, canvas.width, canvas.height);
 
@@ -88,7 +91,7 @@ export default function CameraFeed({
             lastSendTimeRef.current = now;
           }
         } else {
-          // Clear canvas if no pose detected
+          // Clear canvas if no valid pose detected
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
       }

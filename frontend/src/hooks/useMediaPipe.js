@@ -41,9 +41,9 @@ export function useMediaPipe() {
         },
         runningMode: 'VIDEO',
         numPoses: 1,
-        minPoseDetectionConfidence: 0.5,
-        minPosePresenceConfidence: 0.5,
-        minTrackingConfidence: 0.5,
+        minPoseDetectionConfidence: 0.8,
+        minPosePresenceConfidence: 0.8,
+        minTrackingConfidence: 0.8,
       });
 
       poseLandmarkerRef.current = landmarker;
