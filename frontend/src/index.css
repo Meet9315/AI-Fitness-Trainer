@@ -821,3 +821,788 @@ body::before {
     min-width: unset;
   }
 }
+
+/* === Workout Timer === */
+.workout-timer {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.workout-timer__label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.workout-timer__display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.workout-timer__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink-glow);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.workout-timer__time {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+/* === Goal Setter === */
+.goal-setter {
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+}
+
+.goal-setter--complete {
+  border-color: var(--accent-green) !important;
+  box-shadow: var(--shadow-glow-green) !important;
+  animation: goalPulse 0.6s ease-out;
+}
+
+@keyframes goalPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.goal-setter__set-btn {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.08), rgba(0, 255, 136, 0.08));
+  border: 1px dashed var(--border-accent);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.goal-setter__set-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.15), rgba(0, 255, 136, 0.15));
+  color: var(--text-primary);
+  border-style: solid;
+}
+
+.goal-setter__edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.goal-setter__label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.goal-setter__input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+
+.goal-setter__input:focus {
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.goal-setter__progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.goal-setter__ring {
+  width: 80px;
+  height: 80px;
+}
+
+.goal-setter__celebration {
+  font-size: var(--font-size-sm);
+  color: var(--accent-green);
+  font-weight: 700;
+  animation: feedbackSlide 0.3s ease-out;
+}
+
+.goal-setter__change-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.goal-setter__change-btn:hover {
+  color: var(--text-secondary);
+}
+
+/* === Exercise Instructions === */
+.exercise-instructions {
+  padding: 0;
+  overflow: hidden;
+}
+
+.exercise-instructions__toggle {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color var(--transition-fast);
+}
+
+.exercise-instructions__toggle:hover {
+  color: var(--text-primary);
+}
+
+.exercise-instructions__chevron {
+  font-size: var(--font-size-xs);
+  transition: transform var(--transition-base);
+}
+
+.exercise-instructions__content {
+  padding: 0 var(--space-lg) var(--space-lg);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.exercise-instructions__section {
+  margin-bottom: var(--space-md);
+}
+
+.exercise-instructions__section-title {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.exercise-instructions__list {
+  padding-left: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exercise-instructions__item {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.exercise-instructions__tracked {
+  font-size: var(--font-size-sm);
+  color: var(--accent-cyan);
+  padding: 2px 0;
+}
+
+.exercise-instructions__tip {
+  font-size: var(--font-size-sm);
+  color: var(--accent-amber);
+  background: rgba(255, 170, 0, 0.06);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  line-height: 1.5;
+}
+
+/* === Toast Notification === */
+.toast {
+  position: fixed;
+  top: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-sm) var(--space-xl);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  z-index: 9999;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast--hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+}
+
+.toast--success {
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: var(--accent-green);
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+}
+
+.toast--error {
+  background: rgba(255, 0, 85, 0.15);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  color: var(--accent-pink);
+  box-shadow: 0 4px 20px rgba(255, 0, 85, 0.1);
+}
+
+/* === Pause Button === */
+.app__camera-controls {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-sm) 0;
+}
+
+.pause-btn {
+  padding: var(--space-sm) var(--space-xl);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.pause-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.pause-btn--paused {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.12), rgba(0, 245, 255, 0.12));
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+  box-shadow: var(--shadow-glow-green);
+}
+
+/* === Export Buttons === */
+.performance-summary__export {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.export-btn {
+  flex: 1;
+  padding: var(--space-xs) var(--space-sm);
+  background: rgba(0, 245, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.export-btn:hover {
+  background: rgba(0, 245, 255, 0.12);
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
+
+/* === App Footer (Keyboard Shortcuts) === */
+.app__footer {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: var(--space-sm) 0;
+  opacity: 0.4;
+  transition: opacity var(--transition-base);
+}
+
+.app__footer:hover {
+  opacity: 0.8;
+}
+
+.app__shortcut {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-family: var(--font-family);
+}
+
+/* ============================================
+   Skeleton Loading States
+   ============================================ */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: var(--space-xs);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text--sm {
+  width: 60%;
+}
+
+.skeleton-text--md {
+  width: 80%;
+}
+
+.skeleton-text--lg {
+  width: 100%;
+}
+
+.skeleton-circle {
+  border-radius: 50%;
+}
+
+.skeleton-block {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* Skeleton for Rep Counter */
+.skeleton-rep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+}
+
+.skeleton-rep__value {
+  width: 80px;
+  height: 56px;
+}
+
+.skeleton-rep__phase {
+  width: 100px;
+  height: 28px;
+  border-radius: var(--radius-full);
+}
+
+.skeleton-rep__bar {
+  width: 160px;
+  height: 6px;
+  margin-top: var(--space-sm);
+}
+
+/* Skeleton for Angle items */
+.skeleton-angle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skeleton-angle__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.skeleton-angle__name {
+  width: 100px;
+  height: 14px;
+}
+
+.skeleton-angle__value {
+  width: 40px;
+  height: 20px;
+}
+
+.skeleton-angle__gauge {
+  width: 100%;
+  height: 4px;
+  margin-top: var(--space-xs);
+}
+
+/* Skeleton for Feedback items */
+.skeleton-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skeleton-feedback__item {
+  height: 36px;
+  border-left: 3px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Loading spinner for camera */
+.camera-feed__loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.camera-feed__spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.06);
+  border-top-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.camera-feed__loader-text {
+  font-size: var(--font-size-sm);
+  color: var(--accent-amber);
+  font-weight: 500;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.camera-feed__loader-hint {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  max-width: 260px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Enhanced Mobile / Portrait Responsiveness
+   ============================================ */
+
+/* Tablet landscape */
+@media (max-width: 1100px) {
+  .app__main {
+    grid-template-columns: 1fr;
+  }
+
+  .app__sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .app__sidebar > * {
+    flex: 1;
+    min-width: 280px;
+  }
+}
+
+/* Tablet portrait / large phone landscape */
+@media (max-width: 768px) {
+  .app {
+    padding: var(--space-sm);
+    gap: var(--space-sm);
+  }
+
+  .app__main {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .camera-feed {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+  }
+
+  .camera-feed__video,
+  .camera-feed__canvas,
+  .camera-feed__overlay {
+    border-radius: var(--radius-md);
+  }
+
+  .header {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+  }
+
+  .header__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .header__subtitle {
+    display: none;
+  }
+
+  .app__sidebar {
+    flex-direction: column;
+  }
+
+  .app__sidebar > * {
+    min-width: unset;
+  }
+
+  /* Make buttons more touch-friendly */
+  .exercise-selector__btn {
+    padding: var(--space-md);
+    min-height: 54px;
+    font-size: var(--font-size-base);
+  }
+
+  .pause-btn {
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-base);
+    min-height: 48px;
+  }
+
+  .camera-feed__start-btn {
+    padding: var(--space-md) var(--space-2xl);
+    font-size: var(--font-size-base);
+    min-height: 48px;
+  }
+
+  .reset-btn {
+    min-height: 48px;
+    font-size: var(--font-size-base);
+  }
+
+  .export-btn {
+    min-height: 44px;
+    font-size: var(--font-size-sm);
+  }
+
+  .rep-counter__value {
+    font-size: var(--font-size-4xl);
+  }
+
+  .app__footer {
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+}
+
+/* Phone portrait */
+@media (max-width: 480px) {
+  .app {
+    padding: var(--space-xs);
+    gap: var(--space-xs);
+  }
+
+  .camera-feed {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-sm);
+  }
+
+  .camera-feed__video,
+  .camera-feed__canvas,
+  .camera-feed__overlay {
+    border-radius: var(--radius-sm);
+  }
+
+  .header {
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  .header__icon {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-base);
+  }
+
+  .header__title {
+    font-size: var(--font-size-base);
+  }
+
+  .status-text {
+    display: none;
+  }
+
+  .exercise-selector__grid {
+    gap: var(--space-xs);
+  }
+
+  .exercise-selector__emoji {
+    font-size: var(--font-size-lg);
+  }
+
+  .exercise-selector__btn {
+    padding: var(--space-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .rep-counter__value {
+    font-size: var(--font-size-3xl);
+  }
+
+  .workout-timer__time {
+    font-size: var(--font-size-xl);
+  }
+
+  .goal-setter__ring {
+    width: 64px;
+    height: 64px;
+  }
+
+  .feedback-panel__list {
+    max-height: 160px;
+  }
+
+  .app__footer {
+    display: none;
+  }
+
+  /* Stack performance export buttons */
+  .performance-summary__export {
+    flex-direction: column;
+  }
+}
+
+/* Landscape phones — keep camera small & sidebar alongside */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app__main {
+    grid-template-columns: 1fr 280px;
+  }
+
+  .camera-feed {
+    aspect-ratio: 16 / 9;
+  }
+
+  .app__sidebar {
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+  }
+
+  .header {
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .rep-counter__value {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* PWA standalone mode */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .app__footer {
+    padding-bottom: calc(var(--space-sm) + env(safe-area-inset-bottom));
+  }
+}
+
+/* PWA Install Banner */
+.pwa-install-banner {
+  position: fixed;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(13, 13, 35, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-cyan);
+  z-index: 9998;
+  animation: slideUp 0.4s ease-out;
+  max-width: calc(100vw - var(--space-xl) * 2);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.pwa-install-banner__text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.pwa-install-banner__text strong {
+  color: var(--text-primary);
+}
+
+.pwa-install-banner__btn {
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-base);
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
+}
+
+.pwa-install-banner__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(0, 245, 255, 0.35);
+}
+
+.pwa-install-banner__dismiss {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.pwa-install-banner__dismiss:hover {
+  color: var(--text-primary);
+}

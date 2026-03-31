@@ -172,7 +172,11 @@ export function drawAngles(ctx, angles, landmarks, width, height, exercise) {
 
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     ctx.beginPath();
-    ctx.roundRect(x - textWidth / 2, y - 10, textWidth, 22, 4);
+    if (ctx.roundRect) {
+      ctx.roundRect(x - textWidth / 2, y - 10, textWidth, 22, 4);
+    } else {
+      ctx.rect(x - textWidth / 2, y - 10, textWidth, 22);
+    }
     ctx.fill();
 
     // Determine color based on good/bad range

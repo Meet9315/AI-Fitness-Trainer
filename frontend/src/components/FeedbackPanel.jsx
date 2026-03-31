@@ -8,10 +8,15 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const MAX_MESSAGES = 8;
 
-export default function FeedbackPanel({ feedback }) {
+export default function FeedbackPanel({ feedback, resetKey }) {
   const [messages, setMessages] = useState([]);
   const listRef = useRef(null);
   const idCounterRef = useRef(0);
+
+  // Clear messages when resetKey changes (exercise switch or reset)
+  useEffect(() => {
+    setMessages([]);
+  }, [resetKey]);
 
   // Append new feedback messages
   useEffect(() => {

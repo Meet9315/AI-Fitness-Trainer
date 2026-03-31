@@ -119,8 +119,7 @@ export default function CameraFeed({
             videoConstraints={VIDEO_CONSTRAINTS}
             onUserMedia={handleUserMedia}
             audio={false}
-            mirrored={false}
-            style={{ transform: 'scaleX(-1)' }}
+            mirrored={true}
           />
           <canvas
             ref={canvasRef}

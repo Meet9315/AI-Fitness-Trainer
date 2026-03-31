@@ -16,7 +16,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const WS_URL = 'ws://localhost:8000/ws';
+const WS_URL = `ws://${window.location.hostname}:8000/ws`;
 const RECONNECT_DELAY = 2000;
 const MAX_RECONNECT_DELAY = 10000;
 
@@ -97,6 +97,17 @@ export function useWebSocket() {
       }
     };
   }, [connect]);
+
+  // Keepalive ping every 30 seconds
+  useEffect(() => {
+    if (!isConnected) return;
+    const pingInterval = setInterval(() => {
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        wsRef.current.send(JSON.stringify({ type: 'ping' }));
+      }
+    }, 30000);
+    return () => clearInterval(pingInterval);
+  }, [isConnected]);
 
   const sendMessage = useCallback((message) => {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {

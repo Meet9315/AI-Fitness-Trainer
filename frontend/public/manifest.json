@@ -1,0 +1,19 @@
+{
+  "name": "AI Fitness Trainer",
+  "short_name": "FitTrainer",
+  "description": "Real-time AI-powered exercise form correction and rep counting using MediaPipe pose detection",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#060613",
+  "theme_color": "#00f5ff",
+  "categories": ["fitness", "health", "sports"],
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

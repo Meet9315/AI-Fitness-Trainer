@@ -22,6 +22,7 @@ WebSocket Protocol:
 """
 
 import json
+import os
 import logging
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
@@ -38,10 +39,11 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS — allow frontend dev server
+# CORS — configured via environment variable, defaults to allow all for dev
+allowed_origins = os.environ.get("CORS_ORIGINS", "*").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -133,6 +135,12 @@ async def websocket_endpoint(websocket: WebSocket):
                     await websocket.send_text(json.dumps({
                         "type": "summary",
                         **summary,
+                    }))
+
+                elif msg_type == "ping":
+                    # Keepalive ping from client
+                    await websocket.send_text(json.dumps({
+                        "type": "pong",
                     }))
 
             except json.JSONDecodeError:
